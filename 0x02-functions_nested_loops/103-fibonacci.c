@@ -23,7 +23,7 @@ int main(void)
 		if ((tsum % 2) == 0)
 			sum += tsum;
 
-		t1 = fib2;
+		t1 = t2;
 		t2 = tsum;
 	}
 	printf("%.0f\n", tot_sum);
