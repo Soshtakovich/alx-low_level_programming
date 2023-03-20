@@ -26,7 +26,7 @@ int main(void)
 		t1 = t2;
 		t2 = tsum;
 	}
-	printf("%.0f\n", tot_sum);
+	printf("%.0f\n", sum);
 
 	return (0);
 }
