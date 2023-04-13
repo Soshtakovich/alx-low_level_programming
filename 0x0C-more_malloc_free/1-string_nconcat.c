@@ -1,49 +1,41 @@
 #include "main.h"
-#include <stddef.h>
 #include <stdlib.h>
+
 /**
- * *string_nconcat -  concatenates two strings
- * @s1: character
- * @s2: character
- * @n: length
- * Return: cstr
+ * string_nconcat - Main Entry
+ * @s1: input
+ * @s2: input
+ * @n: input
+ * Return: 0
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *p1 = s1, *p2 = s2;
-	unsigned int L1 = 0, L2 = 0, c = 0;
-	char *cstr, *dest;
+	unsigned int i, j, k;
+	char *s;
 
 	if (s1 == NULL)
-		s1 = "";
+		i = 0;
+	else
+	{
+		for (i = 0; s1[i]; i++)
+			;
+	}
 	if (s2 == NULL)
-		s2 = "";
-	while (*p1 != 0)
-		p1++, L1++;
-
-	while (*p2 != 0)
-		p2++, L2++;
-
-	if (n >= L2)
-		cstr = malloc((L1 + L2 + 1) * sizeof(char));
-	p1 = s1, p2 = s2, dest = cstr;
-	if (cstr == NULL)
+		j = 0;
+	else
+	{
+		for (j = 0; s2[j]; j++)
+			;
+	}
+	if (j > n)
+		j = n;
+	s = malloc(sizeof(char) * (i + j + 1));
+	if (s == NULL)
 		return (NULL);
-
-	while (*p1 != '\0')
-	{
-		*dest = *p1;
-		dest++;
-		p1++;
-	}
-	while (*p2 != '\0' && c < n)
-	{
-		*dest = *p2;
-		dest++;
-		p2++;
-		c++;
-	}
-	*dest = '\0';
-
-	return (cstr);
+	for (k = 0; k < i; k++)
+		s[k] = s1[k];
+	for (k = 0; k < j; k++)
+		s[k + i] = s2[k];
+	s[i + j] = '\0';
+	return (s);
 }
