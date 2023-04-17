@@ -1,7 +1,6 @@
 #include "dog.h"
 #include <stdio.h>
 /**
- * init_dog - function with 4 arguments
  * @d: structure pointer
  * @name: pointer character
  * @age: float type argument
