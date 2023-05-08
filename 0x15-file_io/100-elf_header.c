@@ -14,8 +14,8 @@
 void print_addr(char *ptr)
 {
 	int i;
-	int begin;
-	char sys;
+	int _begin;
+	char _sys;
 
 	printf("  Entry point address:               0x");
 
