@@ -17,9 +17,13 @@ if (Command_length == -1) /*incommand not taken*/
         free(incommand);
         exit(EXIT_FAILURE);
     }
+    return incommand;
+}
 
-/*TOKENIZE THE STRING*/
- int i = 0;
+char **analyse(char incommand)
+{
+
+int i = 0;
     int capacity = 2;
 
     char **Command = malloc(capacity * sizeof(char*));
@@ -50,7 +54,7 @@ if (Command_length == -1) /*incommand not taken*/
 
     Command[i] = NULL;
 
-return incommand;
+return Command;
 }
 
 void executes()
@@ -79,14 +83,28 @@ void executes()
         exit(EXIT_FAILURE);
     }
 
-   // free(Command);
+   // free(incommand);
 }
 
 
 int main()
 {
-    // GET LINE
-   getcommand(); /* DISPLAY THE COMMAND PROMPT*/
-   executesz();
 
+while (true) {
+char* incommand = getcommand();
+char ** Command = analyse(incommand);
+
+
+if (Command[0] != NULL) {
+            executes(Command);
+        }
+    
+getcommand();
+executesz();
+
+
+free(incommand);
+free(Command);
+
+        }
 }
