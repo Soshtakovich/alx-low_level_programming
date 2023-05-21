@@ -1,11 +1,9 @@
 #include "simple_shell.h"
 
-
 char* getcommand()  /* DISPLAY THE COMMAND PROMPT*/
 {
     printf("Please enter a incommand:  ");
     printf(" $  ");
-
     char * incommand;
     size_t init_size = 0;
     size_t Command_length = getline (&incommand, &init_size, stdin);
@@ -22,7 +20,6 @@ if (Command_length == -1) /*incommand not taken*/
 
 char **analyse(char incommand)
 {
-
 int i = 0;
     int capacity = 2;
 
@@ -57,18 +54,16 @@ int i = 0;
 return Command;
 }
 
-void executes()
-{ /*EXECUTE*/
+void executes(char **args) /*EXECUTE*/
+{ 
+   /*CHILD PROCESS AND EXECUTE*/
 
-/*CHILD PROCESS AND EXECUTE*/
-    
     int state;
     pid_t is_child = fork();
     
     if(is_child == 0)
-    {
-       
-        /*EXECUTE*/
+    {   
+    /*EXECUTE*/
     }
 
     if(waitpid(is_child,&state,0) == -1)
@@ -82,29 +77,23 @@ void executes()
         perror("Error (fork)");
         exit(EXIT_FAILURE);
     }
-
-   // free(incommand);
 }
 
-
+/*ENTRY*/
 int main()
 {
 
-while (true) {
-char* incommand = getcommand();
-char ** Command = analyse(incommand);
+ while (true) 
+ {
+   char* incommand = getcommand();
+   char ** Command = analyse(incommand);
 
+ if (Command[0] != NULL) 
+ {
+    executes(Command);
+ }
+   free(incommand);
+   free(Command);
+ }
 
-if (Command[0] != NULL) {
-            executes(Command);
-        }
-    
-getcommand();
-executesz();
-
-
-free(incommand);
-free(Command);
-
-        }
 }
